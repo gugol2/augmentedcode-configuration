@@ -1,6 +1,6 @@
 
 # My Base Setup for Augmented Coding with AI 
-Sunday, November 09, 2025
+Sunday, November 09, 2025 -> https://www.eferro.net/2025/11/my-base-setup-for-augmented-coding-with.html
 
 Repository: [eferro/augmentedcode-configuration](https://github.com/eferro/augmentedcode-configuration)
 
