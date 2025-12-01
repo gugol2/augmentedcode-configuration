@@ -1,3 +1,11 @@
 .cursorindexingignore
 .specstory/
 
+# TypeScript
+node_modules/
+dist/
+build/
+*.tsbuildinfo
+coverage/
+.env
+.env.local

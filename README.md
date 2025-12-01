@@ -7,9 +7,13 @@ Reusable AI agent configurations for development workflows. Designed for XP/TDD 
 ```
 .
 ├── .agents/rules/
-│   └── base.md             # 📌 Single source of truth for all AI rules
-├── .cursor/
-│   ├── commands/           # Slash commands (Cursor IDE)
+│   └── base.md             # 📌 TypeScript rules (single source of truth)
+├── .vscode/                # VS Code configuration
+│   ├── tasks.json          # npm script tasks
+│   ├── settings.json       # TypeScript/ESLint/Prettier settings
+│   └── extensions.json     # Recommended extensions
+├── .cursor/                # Optional: Cursor IDE commands
+│   ├── commands/           # Slash commands
 │   └── rules/              # Rule that references base.md
 ├── AGENTS.md → base.md     # Symlink for OpenAI Codex
 ├── CLAUDE.md → base.md     # Symlink for Claude
@@ -18,7 +22,7 @@ Reusable AI agent configurations for development workflows. Designed for XP/TDD 
 
 ### Key Concept
 
-**One ruleset, multiple entry points.** All AI agents use the same rules defined in `.agents/rules/base.md`. The symlinks (AGENTS.md, CLAUDE.md, GEMINI.md) allow each tool to find the rules in its expected location.
+**One ruleset (TypeScript), multiple entry points.** All AI agents use the same TypeScript rules defined in `.agents/rules/base.md`. The symlinks (AGENTS.md, CLAUDE.md, GEMINI.md) allow each tool to find the rules in its expected location.
 
 ## Available Commands
 
@@ -37,16 +41,21 @@ Cursor IDE slash commands. Copy to `.cursor/commands/` or adapt for other tools:
 
 ## Usage
 
-### For Cursor IDE
+### For TypeScript Projects (VS Code)
 
 ```bash
-# Copy commands and rules
-cp -r .cursor /path/to/your/project/
+# Copy VS Code configuration
+cp -r .vscode /path/to/your/project/
+cp CLAUDE.md /path/to/your/project/
+
+# See TYPESCRIPT_SETUP.md for complete setup guide
 ```
+
+See [TYPESCRIPT_SETUP.md](TYPESCRIPT_SETUP.md) for detailed instructions.
 
 ### For Other AI Tools
 
-Copy the appropriate symlink or create one pointing to `base.md`:
+Copy the symlink:
 
 ```bash
 # Example: for Claude

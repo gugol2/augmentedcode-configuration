@@ -1,0 +1,82 @@
+module.exports = {
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 2020,
+    sourceType: 'module',
+    project: './tsconfig.json',
+  },
+  plugins: ['@typescript-eslint'],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    'prettier', // Must be last to override other configs
+  ],
+  rules: {
+    // Enforce explicit return types (good for documentation)
+    '@typescript-eslint/explicit-function-return-type': 'error',
+
+    // No any types (maintain type safety)
+    '@typescript-eslint/no-explicit-any': 'error',
+
+    // Unused variables (allow _ prefix for intentionally unused)
+    '@typescript-eslint/no-unused-vars': ['error', {
+      argsIgnorePattern: '^_',
+      varsIgnorePattern: '^_'
+    }],
+
+    // Small functions (TDD principle: 10-20 lines max)
+    'max-lines-per-function': ['warn', {
+      max: 20,
+      skipBlankLines: true,
+      skipComments: true,
+      IIFEs: true
+    }],
+
+    // Complexity limits
+    'complexity': ['warn', 5],
+    'max-depth': ['warn', 2],
+
+    // Consistent naming
+    '@typescript-eslint/naming-convention': [
+      'error',
+      {
+        selector: 'interface',
+        format: ['PascalCase'],
+      },
+      {
+        selector: 'class',
+        format: ['PascalCase'],
+      },
+      {
+        selector: 'function',
+        format: ['camelCase'],
+      },
+    ],
+
+    // Require return types on exported functions
+    '@typescript-eslint/explicit-module-boundary-types': 'error',
+
+    // Prevent floating promises
+    '@typescript-eslint/no-floating-promises': 'error',
+
+    // Consistent type definitions
+    '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
+
+    // Prefer const over let when possible
+    'prefer-const': 'error',
+
+    // No var
+    'no-var': 'error',
+  },
+  overrides: [
+    {
+      // Relax some rules for test files
+      files: ['**/*.test.ts', '**/*.spec.ts', '**/__tests__/**/*.ts'],
+      rules: {
+        'max-lines-per-function': 'off',
+        '@typescript-eslint/no-explicit-any': 'warn',
+      },
+    },
+  ],
+};
